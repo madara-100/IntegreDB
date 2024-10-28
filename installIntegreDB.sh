@@ -26,10 +26,11 @@ Postgis()
  echo -e "\n${RED}Installation Complete Sucessfully.${RESET}"
 }
 
-
+count=0
 \clear
 echo -e "\n\n\n"
 cat image.txt
+while [ $count -ne 5 ];do
 echo
 echo -e "\n\tYou are about to install IntegreDB Server,\n\tBelow is the licensing, Terms and condition for the same, than you can shoose the below option"
 echo -e "\n1)IntegreDB Postgres Server"
@@ -41,18 +42,31 @@ read -p "Enter Choice : " choice
 case $choice in
 	1)
         	Install_Postgresql
+		break
 		;;
 	2)
 		PostGres_PostGis
+		break
 		;;
 	3)
 		Postgis
+		break
 		;;
 	*)
-		echo "Invalid argument.Try again"
+		if [ $count -le 5 ];then
+			((count++))
+			echo -e "\n${RED}Invalid argument.Try again${RESET}"
+			continue;
+		fi
+		exit
 		;;
 esac
+done
 
+
+if [ $count -eq 5 ];then
+	 exit
+fi
 	
 echo -e "\nEnabling and starting PostgresSql service..."
 #sudo systemctl enable postgresql
