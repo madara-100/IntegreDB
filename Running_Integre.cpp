@@ -65,17 +65,18 @@ int main() {
             default:
                 if (count < maxAttempts) {
                     cout << "\nInvalid argument. Try again." << endl;
+                    count++;
                     continue;
 		} else {
                     cout << "\nMaximum attempts reached. Exiting..." << endl;
+                     count++;
                     break;
                 }
-                count++;
         }
     }
 
     // Continue if the user made a valid selection
-    if (count < maxAttempts) {
+    if (count == maxAttempts) {
 	return 0;
     }
         cout << "\nEnabling and starting PostgreSQL service..." << endl;
