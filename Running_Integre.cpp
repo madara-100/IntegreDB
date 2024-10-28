@@ -7,18 +7,18 @@ using namespace std;
 // Function to simulate installing PostgreSQL
 void Install_Postgresql() {
     cout << "\nInstalling IntegreDB PostGres Server..." << endl;
-    // Uncomment the following lines to execute the installation
-    // system("sudo apt update");
-    // system("sudo apt install -y postgresql postgresql-contrib");
+    
+     system("sudo apt update");
+     system("sudo apt install -y postgresql postgresql-contrib");
     cout << "\nInstallation Complete Successfully." << endl;
 }
 
 // Function to simulate installing PostGIS
 void Postgis() {
     cout << "\nInstalling IntegreDB PostGis extension..." << endl;
-    // Uncomment the following lines to execute the installation
-    // system("sudo apt update");
-    // system("sudo apt install -y postgresql postgresql-contrib postgis");
+    
+     system("sudo apt update");
+     system("sudo apt install -y postgresql postgresql-contrib postgis");
     cout << "\nInstallation Complete Successfully." << endl;
 }
 
@@ -33,7 +33,7 @@ int main() {
     system("clear");
     cout << "\n\n\n";
     // Displaying the content of "image.txt" file (if exists)
-    // Uncomment the line below if you have the "image.txt" file and want to show its content
+    
     system("cat image.txt");
 
     int choice = 0;
@@ -80,9 +80,9 @@ int main() {
 	return 0;
     }
         cout << "\nEnabling and starting PostgreSQL service..." << endl;
-        // Uncomment the following lines to enable and start the service
-        // system("sudo systemctl enable postgresql");
-        // system("sudo systemctl start postgresql");
+        
+         system("sudo systemctl enable postgresql");
+         system("sudo systemctl start postgresql");
 
         cout << "\nConfiguring PostgreSQL for local access" << endl;
         cout << "\nPlease Enter Password for Security change for 'postgres' user." << endl;
@@ -92,9 +92,9 @@ int main() {
         cin >> password;
 
         // To execute the password change, uncomment the line below.
-        // Be careful with password handling in real applications to avoid exposing it in commands.
-        // string command = "sudo -u postgres psql -c \"ALTER USER postgres PASSWORD '" + password + "'\"";
-        // system(command.c_str());
+        
+         string command = "sudo -u postgres psql -c \"ALTER USER postgres PASSWORD '" + password + "'\"";
+         system(command.c_str());
 
         cout << "\nPostgreSQL has been configured with a default password for the 'postgres' user." << endl;
         cout << "\nThanks for using IntegreDB Server application :)" << endl;
