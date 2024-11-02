@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <string>
-
+#include <unistd.h>
 using namespace std;
 
 // Function to simulate installing PostgreSQL
@@ -31,37 +31,38 @@ void PostGres_PostGis() {
 int main() {
     //clrscr();
     system("clear");
-    cout << "\n\n\n";
+    cout << endl<<endl<<endl;
     // Displaying the content of "image.txt" file (if exists)
-    
     system("cat image.txt");
 
-    int choice = 0;
+    char choice;
     int count = 0;
     const int maxAttempts = 5;
 
     while (count < maxAttempts) {
-        cout << "\n\tYou are about to install IntegreDB Server,\n"
-             << "\tBelow is the licensing, Terms, and conditions for the same.\n"
-             << "\tYou can then choose from the options below:\n" << endl;
+        cout << "\n\tYou are about to install IntegreDB Server,\n"<< "\tBelow is the licensing, Terms, and conditions for the same.\n"<< "\tYou can then choose from the options below:\n" << endl;
 
         cout << "1) IntegreDB Postgres Server" << endl;
         cout << "2) Server Along with extension PostGis" << endl;
         cout << "3) PostGis" << endl;
+        cout <<endl<< "NOTE::Press q for Exiting" << endl;
         cout << "\nEnter Choice: ";
         cin >> choice;
 
         // Handling the choice using a switch statement
         switch (choice) {
-            case 1:
-                Install_Postgresql();
-                break;
-            case 2:
-                PostGres_PostGis();
-                break;
-            case 3:
-                Postgis();
-                break;
+            case '1':
+                	Install_Postgresql();
+                    	break;
+            case '2':
+               		 PostGres_PostGis();
+                    	break;
+            case '3':
+                	Postgis();
+                   	break;
+	    case 'q':
+			count=maxAttempts;
+			break;
             default:
                 if (count < maxAttempts) {
                     cout << "\nInvalid argument. Try again." << endl;
@@ -69,16 +70,17 @@ int main() {
                     continue;
 		} else {
                     cout << "\nMaximum attempts reached. Exiting..." << endl;
-                     count++;
-                    break;
+        	    cout << "\nThanks for using IntegreDB Server application :)" << endl;
+                    exit(0);
                 }
         }
     }
+		if(count==maxAttempts) {
+                    cout << "\nMaximum attempts reached. Exiting..." << endl;
+        	    cout << "\nThanks for using IntegreDB Server application :)" << endl;
+                    exit(0);
+                }
 
-    // Continue if the user made a valid selection
-    if (count == maxAttempts) {
-	return 0;
-    }
         cout << "\nEnabling and starting PostgreSQL service..." << endl;
         
          system("sudo systemctl enable postgresql");
